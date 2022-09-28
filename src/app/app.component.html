@@ -1,0 +1,129 @@
+<div class="card">
+  <h1>SIGN UP TASK</h1>
+  <form [formGroup]="userform" (ngSubmit)="submit(userform.value)">
+    <div class="mt-5 box">
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>first_name</label>
+          </div>
+          <div class="form row">
+            <div class="col" >
+              <input
+              id="first_name"
+                type="text"
+                formControlName="first_name"
+                class="form-control"
+                placeholder="ENTER_FIRSTNAME"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>surname</label>
+          </div>
+          <div class="form row">
+            <div class="col" >
+              <input
+              id="surname"
+                type="text"
+                formControlName="surname"
+                class="form-control"
+                placeholder="ENTER SURNAME"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>age</label>
+          </div>
+          <div class="form row">
+            <div class="col" > 
+              <input
+              id="age"
+                type="number"
+                formControlName="age"
+                class="form-control"
+                placeholder="ENTER AGE"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>gender</label>
+          </div>
+          <div class="form row">
+            <div class="col" >
+              <input
+              id="gender"
+                type="text"
+                formControlName="gender"
+                class="form-control"
+                placeholder="ENTER GENDER"
+              />
+            </div>
+          </div>
+
+          <div class="form-row mt-4">
+            <div class="col -md-6">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="submit(userform.value)"
+              > {{ isUpdated ? 'UPDATE' : 'CREATE' }}
+              </button>
+              <button type="button" class="btn btn-warning" (click)="reset()">
+                RESET
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-8 mt-4 mb-4">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>first_name</th>
+          <th>surname</th>
+          <th>age</th>
+          <th>gender</th>
+          <th>edit</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listUser">
+          <td>
+            <span>{{ item.first_name }}</span>
+          </td>
+          <td>
+            <span>{{ item.surname }}</span>
+          </td>
+          <td>
+            <span>{{ item.age }}</span>
+          </td>
+          <td>
+            <span>{{ item.gender }}</span>
+          </td>
+          <td>
+            <button type="button"  class="btn btn-primary"  (click)="editUser(item.user_id)" [disabled]="item.isReading" >
+              edit 
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(item.user_id)" [disabled]="item.isDeleting">
+              delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
